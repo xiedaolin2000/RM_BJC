@@ -3,13 +3,23 @@
 
 <head>
     <meta charset="utf-8">
+    {% comment %}  引入bootstrap CSS，位置要放在所有CSS之前  {% endcomment %}
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
-    <title>{% block title %}资源管理{% endblock title %}</title>
+    <title>
+        {% block title %}基础模板标题{% endblock title %}
+    </title>
 </head>
 
 <body>
-    {% include "navbar_top.html" %} {% block body %}这是基础模板网页{% endblock body %}
+
+    {% comment %}   导航栏  {% endcomment %}
+    {% include "navbar_top.html" %} 
+    {% block body %}
+    这是基础模板网页
+    {% endblock body %}
+
+    {% comment %}  引入bootstrap JavaScript，位置要放在所有脚本之后  {% endcomment %}
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

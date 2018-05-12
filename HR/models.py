@@ -57,7 +57,7 @@ class Person(models.Model):
     maritalStatus = models.CharField("婚姻状况", max_length=1, 
         choices=(('0','未婚'), ('1','已婚'), ('2','离异')), default="0")
   
-    #员工住址，第一个参数表示字段的自述名称，或者使用verbose_name="XXXX"
+    #员工住址 ，第一个参数表示字段的自述名称，或者使用verbose_name="XXXX"
     address = models.CharField("住址", max_length=200)
     # 毕业院校
     graduatedSchool = models.CharField("毕业学校", max_length=20, default="大学")

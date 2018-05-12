@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.views.generic import TemplateView
 from . import views
 
 urlpatterns = [
     # path('', views.HR_Info),
-    path('', views.PersonListView.as_view(), name="list"),
+    path('',       views.PersonListView.as_view(), name="list"),
+    path('OK',      TemplateView.as_view(template_name="HR/success.html")  , name="success"),
+    path('<int:pk>', views.personViews.as_view(),    name="detail"),
 ]

@@ -1,0 +1,12 @@
+{% extends "base_site.html" %} 
+{% block title %} 
+人员信息列表 
+{% endblock title %} 
+{#父模板中body区块定义覆盖#} 
+{% block body %}
+<form method="post" >
+    {% csrf_token %} 
+    {{ form.as_p }}
+    <input type="submit" value="保存" />
+</form>
+{% endblock body %}

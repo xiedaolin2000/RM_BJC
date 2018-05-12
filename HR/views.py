@@ -3,6 +3,7 @@ from django.http import HttpResponse
 import datetime
 from django.views import generic
 from .models import Person
+from .forms import personForm
 
 # Create your views here.
 def index(request):
@@ -26,4 +27,15 @@ class PersonListView(generic.ListView):
         context = super(PersonListView, self).get_context_data(**kwargs)
         context["Author"]="xiedaolin.DELEX"
         return context
-    
+
+class personViews(generic.UpdateView):
+    model = Person
+    # fields = ["userName","workNo"]
+    fields = "__all__"
+    template_name="HR/HR_detail.html" 
+    success_url = 'OK'
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        return super().form_valid(form)
