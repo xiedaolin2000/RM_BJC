@@ -17,3 +17,13 @@ class PersonListView(generic.ListView):
     model = Person
     context_object_name = 'person_list'
     template_name='HR/HR_list.html'
+    #设置了分页的记录数就自动开启了分页功能
+    paginate_by=10 
+    
+    # def get_queryset(self):
+
+    def get_context_data(self, **kwargs):
+        context = super(PersonListView, self).get_context_data(**kwargs)
+        context["Author"]="xiedaolin.DELEX"
+        return context
+    

@@ -10,9 +10,25 @@
     <td>李四</td>    <td>24</td>  </tr>  <tr>    <td>B-1002</td>    <td>王五</td>    <td>23</td>  </tr>  <tr>    <td>B-1003</td>    <td>赵六</td>    <td>26</td>  </tr>  <tr>    <td>B-1004</td>
     <td>钱七</td>    <td>26</td>  </tr>
 </table> -->
-<table>
+<table border="1" cellspacing="0" >
+    <caption>人员信息列表</caption>
     <th>姓名</th>
     <th>工号</th>
+    <th>华为工号</th>
+    <th>手机</th>
+    <th>身份证</th>
+    <th>公司邮箱</th>
+    <th>华为邮箱</th>
+    <th>性别</th>
+    <th>岗位</th>
+    <th>入职日期</th>
+    <th>部门</th>
+    <th>业务线</th>
+    <th>项目组</th>
+    <th>籍贯省</th>
+    <th>籍贯市</th>
+    <th>出生日期</th>
+    <th>婚姻状况</th>
     <th>华为工号</th>
     {% for p in person_list %}
       <tr>
@@ -38,6 +54,23 @@
         <td> {{p.profession}}</td>
         <td> {{p.graduatedDay}}</td>
       </tr>
-    {% endfor %}
+    {% endfor %}    
 </table>
+<!-- 通用列表视图自带的分页功能对象，不需要自己在额外申明 
+  https://blog.csdn.net/l475378094/article/details/76850725
+-->
+<div class="pagination">
+<span class="step-links">
+  {% if page_obj.has_previous %}
+    <a href="?page={{page_obj.previous_page_mumber}}"><<</a>
+  {% endif %}
+</span>
+<span class="current">
+   {{page_obj.number}}/{{paginator.num_pages}}
+</span>
+{% if page_obj.has_next %}
+  <a href="?page={{page_obj.next_page_number}}">>></a>
+{% endif %}
+</div>
+{{Author}}
 {% endblock body %}
