@@ -3,6 +3,7 @@ import datetime
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
+from django.urls import reverse_lazy
 
 from .forms import personForm
 from .models import Person
@@ -42,3 +43,15 @@ class personViews(generic.UpdateView):
         # This method is called when valid form data has been POSTed.
         # It should return an HttpResponse.
         return super().form_valid(form)
+
+class personAdd(generic.edit.CreateView):
+    model=Person
+    template_name="HR/HR_detail.html" 
+    fields="__all__"
+class personUpdate(generic.edit.UpdateView):
+    model = Person
+    template_name="HR/HR_detail.html" 
+    fields = "__all__"
+class personDelete(generic.edit.DeleteView):
+    model = Person
+    success_url = reverse_lazy('success')

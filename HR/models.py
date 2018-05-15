@@ -68,6 +68,8 @@ class Person(models.Model):
     profession = models.CharField("专业", max_length=20, null=True, default="")
     # 毕业时间
     graduatedDay = models.DateField("毕业日期", default=date.today)
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'pk': self.pk})
 
     class Meta:
         ordering = ["id"]
