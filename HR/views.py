@@ -1,9 +1,12 @@
-from django.shortcuts import render
-from django.http import HttpResponse
 import datetime
+
+from django.http import HttpResponse
+from django.shortcuts import render
 from django.views import generic
-from .models import Person
+
 from .forms import personForm
+from .models import Person
+
 
 # Create your views here.
 def index(request):
