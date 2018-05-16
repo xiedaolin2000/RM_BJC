@@ -15,7 +15,7 @@ def index(request):
     html = "<html><body>HR应用主页<p>现在时间是%s.</body></html>" % now
     return HttpResponse(html)
 
-def HR_Info(request):
+def infoHR(request):
     return render(request,"HR/HR_list.html")
 
 class PersonListView(generic.ListView):
@@ -32,26 +32,32 @@ class PersonListView(generic.ListView):
         context["Author"]="xiedaolin.DELEX"
         return context
 
-class personViews(generic.UpdateView):
-    model = Person
-    # fields = ["userName","workNo"]
-    fields = "__all__"
-    template_name="HR/HR_detail.html" 
-    success_url = 'OK'
 
-    def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        return super().form_valid(form)
+# class personUpdateView(generic.UpdateView):
+#     model = Person
+#     # fields = ["userName","workNo"]
+#     fields = "__all__"
+#     template_name="HR/HR_detail.html" 
+#     success_url = 'OK'
 
-class personAdd(generic.edit.CreateView):
+#     def form_valid(self, form):
+#         # This method is called when valid form data has been POSTed.
+#         # It should return an HttpResponse.
+#         return super().form_valid(form)
+
+class PersonAddView(generic.edit.CreateView):
     model=Person
     template_name="HR/HR_detail.html" 
     fields="__all__"
-class personUpdate(generic.edit.UpdateView):
+    success_url = "OK"
+    # success_url = reverse_lazy('success')
+class PersonUpdateView(generic.edit.UpdateView):
     model = Person
     template_name="HR/HR_detail.html" 
     fields = "__all__"
-class personDelete(generic.edit.DeleteView):
+    success_url = "OK"
+class PersonDelView(generic.edit.DeleteView):
     model = Person
-    success_url = reverse_lazy('success')
+    template_name="HR/HR_detail.html"
+    success_url = ""
+    

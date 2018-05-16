@@ -61,7 +61,10 @@
         <td> {{p.education}}</td>
         <td> {{p.profession}}</td>
         <td> {{p.graduatedDay}}</td>
-        <td> <a href="/HR/{{p.id}}">详细信息</a></td>
+        <td> 
+          <a href="/HR/{{p.id}}">详细信息</a>
+          <a href="/HR/del/{{p.id}}">删除</a>
+        </td>
       </tr>
     {% endfor %}    
 </table>

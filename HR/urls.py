@@ -20,11 +20,10 @@ from . import views
 
 urlpatterns = [
     # path('', views.HR_Info),
-    path('',       views.PersonListView.as_view(), name="list"),
-    path('OK',      TemplateView.as_view(template_name="HR/success.html")  , name="success"),
-    path('<int:pk>', views.personViews.as_view(),    name="detail"),
-    path('person/add/', views.personAdd.as_view(),    name="personAdd"),
-    path('person/<int:pk>/', views.personUpdate.as_view(),    name="personUpdate"),
-    path('person/<int:pk>/del', views.personDelete.as_view,    name="personDel"),
+    path('',             views.PersonListView.as_view(), name="PersonListView"),
+    path('OK',           TemplateView.as_view(template_name="HR/success.html")  , name="success"),
+    path('add/',         views.PersonAddView.as_view(),    name="PersonAddView"),
+    path('<int:pk>/',    views.PersonUpdateView.as_view(),    name="PersonUpdateView"),
+    path('del/<int:pk>', views.PersonDelView.as_view(),    name="PersonDelView"),
     
 ]

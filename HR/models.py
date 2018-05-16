@@ -68,11 +68,14 @@ class Person(models.Model):
     profession = models.CharField("专业", max_length=20, null=True, default="")
     # 毕业时间
     graduatedDay = models.DateField("毕业日期", default=date.today)
+
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'pk': self.pk})
+        from django.urls import reverse
+        # return reverse('PersonListView', kwargs={'pk': self.pk})
+        return reverse('PersonListView')
 
     class Meta:
-        ordering = ["id"]
+        ordering = ["-entryDate"]
     def __str__(self):
         return self.userName
 
