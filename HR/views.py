@@ -58,6 +58,6 @@ class PersonUpdateView(generic.edit.UpdateView):
     success_url = "OK"
 class PersonDelView(generic.edit.DeleteView):
     model = Person
-    template_name="HR/HR_detail.html"
-    success_url = ""
+    template_name="HR/HR_Person_Del.html"
+    success_url = "/HR/"
     

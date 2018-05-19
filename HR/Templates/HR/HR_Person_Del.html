@@ -1,0 +1,27 @@
+{% extends "base_site.html" %} 
+{% block title %} 
+人员信息列表 
+{% endblock title %} 
+{#父模板中body区块定义覆盖#} 
+{% block body %}
+<form method="POST">
+    {% csrf_token %} 
+    <div class="form-group"></div>
+        你是否要删除以下人员
+       <br>
+       
+       <P>
+        {{ object.userName }}
+       </P>
+       <P>
+        {{ object.workNo }}
+       </P>
+       <P>
+        {{ object.IDNo }}
+       </P>
+       <br>
+        <input type="submit" value="是的" />
+        <button>返回</button>
+    </div>   
+</form>
+{% endblock body %}

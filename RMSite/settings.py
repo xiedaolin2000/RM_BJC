@@ -24,6 +24,8 @@ SECRET_KEY = '_i(lwilcl&($i%%nx84_bf)+i6(*53fxh3$y(=gdxl5b39hc1m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#从哪些ip访问站点，显示debug_toolbar
+INTERNAL_IPS = ('127.0.0.1',)
 
 ALLOWED_HOSTS = []
 
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar', #调试工具栏
 ]
 
 MIDDLEWARE = [
@@ -48,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware', #django-Debug-Toolbar
 ]
 
 ROOT_URLCONF = 'RMSite.urls'
@@ -66,6 +70,22 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+#django-Debug-Toolbar
+DEBUG_TOOLBAR_PANELS = [
+    'debug_toolbar.panels.versions.VersionsPanel',
+    'debug_toolbar.panels.timer.TimerPanel',
+    'debug_toolbar.panels.settings.SettingsPanel',
+    'debug_toolbar.panels.headers.HeadersPanel',
+    'debug_toolbar.panels.request.RequestPanel',
+    'debug_toolbar.panels.sql.SQLPanel',
+    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
+    'debug_toolbar.panels.templates.TemplatesPanel',
+    'debug_toolbar.panels.cache.CachePanel',
+    'debug_toolbar.panels.signals.SignalsPanel',
+    'debug_toolbar.panels.logging.LoggingPanel',
+    'debug_toolbar.panels.redirects.RedirectsPanel',
 ]
 
 WSGI_APPLICATION = 'RMSite.wsgi.application'
