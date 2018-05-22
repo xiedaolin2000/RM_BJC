@@ -21,7 +21,7 @@ import debug_toolbar
 
 urlpatterns = [
     # path('', views.HR_Info),
-    path('__debug__/', include(debug_toolbar.urls)),
+    path('__debug__/',   include(debug_toolbar.urls)),
     path('',             views.PersonListView.as_view(), name="PersonListView"),
     path('OK',           TemplateView.as_view(template_name="HR/success.html")  , name="success"),
     path('add/',         views.PersonAddView.as_view(),    name="PersonAddView"),

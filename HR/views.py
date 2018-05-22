@@ -25,7 +25,20 @@ class PersonListView(generic.ListView):
     #设置了分页的记录数就自动开启了分页功能
     paginate_by=10 
     
-    # def get_queryset(self):
+    #获取查询值
+    def get_queryset(self):
+
+        try:
+            searchctx = self.request.GET["userName"]
+        except KeyError:
+            searchctx = ""
+           
+        # searchctx1 = self.kwargs["userName"]
+        if searchctx == "":
+            qs = Person.objects.all()
+        else:
+            qs = Person.objects.filter(userName__contains=searchctx)
+        return qs
 
     def get_context_data(self, **kwargs):
         context = super(PersonListView, self).get_context_data(**kwargs)

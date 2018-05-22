@@ -10,7 +10,7 @@
           <a class="nav-link" href="/">主页 <span class="sr-only">当前页</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/HR/">人员信息</a>
+          <a class="nav-link" href="/test/">测试小程序</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="/HR/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -19,7 +19,7 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/HR/">人员信息列表</a>
             <a class="dropdown-item" href="/HR/add">新增人员</a>
-            <a class="dropdown-item" href="/HR/add">修改信息</a>
+            <a class="dropdown-item" href="/HR/add">导入数据</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">删除人员</a>
           </div>
@@ -28,9 +28,9 @@
           <a class="nav-link disabled" href="#">禁用</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+      <form class="form-inline my-2 my-lg-0" action="/HR" method="GET"> 
+        <input class="form-control mr-sm-2" type="search"  name="userName" placeholder="名字，例如：张三" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>        
       </form>
     </div>
   </nav>

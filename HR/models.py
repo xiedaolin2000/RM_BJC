@@ -38,36 +38,38 @@ class Person(models.Model):
         ("9B", "9B"), ("9A", "9A"), ("10B", "10B"), ("10A", "10A"),
         ("11B", "11B"), ("11A", "11A"), ("12B", "12B"), ("12A", "12A")
     )
-    level = models.CharField("岗位级别", max_length=4, choices=levelList, default="1")
+    level = models.CharField("岗位级别", max_length=4, choices=levelList, default="00")
     # 到岗日期/入职日期
     entryDate = models.DateField("入职日期", default=date.today)
     # 部门
-    depart = models.CharField("部门", max_length=10, default="0")
+    depart = models.CharField("部门", max_length=10, default="0", null=True)
     # 业务线
-    productUnit = models.CharField("产品线", max_length=10, default="0")
+    productUnit = models.CharField("产品线", max_length=10, default="0",null=True)
     # 项目组
-    projectName = models.CharField("项目组名", max_length=20, default="0")
+    projectName = models.CharField("项目组名", max_length=20, default="0",null=True)
     # 籍贯省
-    provinceBirth = models.CharField("籍贯省份", max_length=20, default="江苏省")
+    provinceBirth = models.CharField("籍贯省份", max_length=20,null=True, default="江苏省")
     # 籍贯市
-    cityBirth = models.CharField("籍贯市", max_length=20, default="南京市")
+    cityBirth = models.CharField("籍贯市", max_length=20,null=True, default="南京市")
     # 出生日期
-    birthDay = models.DateField("出生日期", default=date.today)
+    birthDay = models.DateField("出生日期", null=True,default=date.today)
     # 婚姻状况
     maritalStatus = models.CharField("婚姻状况", max_length=1, 
         choices=(('0','未婚'), ('1','已婚'), ('2','离异')), default="0")
   
     #员工住址 ，第一个参数表示字段的自述名称，或者使用verbose_name="XXXX"
-    address = models.CharField("住址", max_length=200)
+    address = models.CharField("住址", max_length=200, null=True)
     # 毕业院校
-    graduatedSchool = models.CharField("毕业学校", max_length=20, default="大学")
+    graduatedSchool = models.CharField("毕业学校", max_length=20, null=True,default="大学")
     # 学历
     education = models.CharField("学历", max_length=1,
-    choices=(('0', '小学'), ('1', '初中'), ('2', '高中'), ('3', '大专'), ('4', '本科'), ('5', '研究生')), default="4")
+    choices=(('0', '小学'), ('1', '初中'), ('2', '高中'), ('3', '大专'), ('4', '本科'), ('5', '研究生')),null=True, default="4")
     # 大学专业名称
     profession = models.CharField("专业", max_length=20, null=True, default="")
     # 毕业时间
-    graduatedDay = models.DateField("毕业日期", default=date.today)
+    graduatedDay = models.DateField("毕业日期", null=True,default=date.today)
+
+  
 
     def get_absolute_url(self):
         from django.urls import reverse
@@ -79,6 +81,9 @@ class Person(models.Model):
     def __str__(self):
         return self.userName
 
+#从公司的花名册表单中读取员工数据，更新到数据库中
+def import_data_excel(fileName):
+    pass
 class Salary(models.Model):
     """
     薪资调整数据
