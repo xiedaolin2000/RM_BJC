@@ -4,67 +4,32 @@
 {% endblock title %} 
 {#父模板中body区块定义覆盖#} 
 {% block body %}
+{% comment %}
+  使用div进行排版，每两个字段排列成一行的样式
+{% endcomment %}
+<div class="container">
 <form method="post" role="form" class="form-horizontal">
     {% csrf_token %} 
-    <div class="form-group">
-        <!-- <label for="{{form.userName.id_for_label}}" class="col-sm-2 control-label">姓名</label> -->  
-            <!-- <input type="text" class="form-control" id="firstname" placeholder="请输入名字"> -->
-        {{form.userName.errors }}        {{form.userName.label_tag}} {{form.userName}}
-        {{form.IDNo.errors }}            {{form.IDNo.label_tag}}      {{form.IDNo}}
-    </div>
+    {% for field in form %}
+        {% if forloop.counter0|divisibleby:"2" %}
+            <div class="row">
+        {% endif %}      
 
-    <div class="form-group">    
-        {{form.workNo.errors }}          {{form.workNo.label_tag}}         {{form.workNo}} 
-        {{form.workNoExt.errors }}       {{form.workNoExt.label_tag}}      {{form.workNoExt}}         
-    </div>
-
-    <div class="form-group">
-        {{form.mobilePhone.errors }} {{form.mobilePhone.label_tag}} {{form.mobilePhone}}
-    </div>
-
-    <div class="form-group">
-            {{form.email.errors }} {{form.email.label_tag}} {{form.email}}
-            {{form.emailExt.errors }} {{form.emailExt.label_tag}} {{form.emailExt}}
-    </div>
-
-    <div class="form-group">
-            {{form.sex.errors }} {{form.sex.label_tag}} {{form.sex}}
-            {{form.maritalStatus.errors }} {{form.maritalStatus.label_tag}} {{form.maritalStatus}}
-            {{form.level.errors }} {{form.level.label_tag}} {{form.level}}
-    </div>
-
-    <div class="form-group">
-            {{form.depart.errors }} {{form.depart.label_tag}} {{form.depart}}
-            {{form.productUnit.errors }} {{form.productUnit.label_tag}} {{form.productUnit}}
-            {{form.projectName.errors }} {{form.projectName.label_tag}} {{form.projectName}}
-    </div>
-
-    <div class="form-group">
-            {{form.provinceBirth.errors }} {{form.provinceBirth.label_tag}} {{form.provinceBirth}}
-            {{form.cityBirth.errors }} {{form.cityBirth.label_tag}} {{form.cityBirth}}
-            {{form.birthDay.errors }} {{form.birthDay.label_tag}} {{form.birthDay}}
-    </div>
-
-    <div class="form-group">
-            {{form.entryDate.errors }} {{form.entryDate.label_tag}} {{form.entryDate}}
-            {{form.address.errors }} {{form.address.label_tag}} {{form.address}}
-    </div>
-
-    <div class="form-group">
-            {{form.graduatedSchool.errors }} {{form.graduatedSchool.label_tag}} {{form.graduatedSchool}}
-            {{form.education.errors }} {{form.education.label_tag}} {{form.education}}
-            {{form.profession.errors }} {{form.profession.label_tag}} {{form.profession}}
-            {{form.graduatedDay.errors }} {{form.graduatedDay.label_tag}} {{form.graduatedDay}}
-    </div>
-
-
-    <div class="form-group">
-        <div class="control">
-            <button type="submit" class="btn btn-default">保存</button>
-            <button type="button" class="btn btn-default">删除</button>
-            <button type="button" class="btn btn-default">退出</button>
+        <div class="col-2">
+            {{ field.errors }} {{ field.label_tag }} 
         </div>
-    </div>
- 
+
+        <div class="col-2">
+            {{ field }} 
+            {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+            {% endif %}
+        </div>        
+        
+        {% if not forloop.counter0|divisibleby:"2" %}
+            </div>
+        {% endif %}
+    {% endfor %} 
 </form>
+</div>
 {% endblock body %}
