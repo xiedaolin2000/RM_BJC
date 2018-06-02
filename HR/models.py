@@ -86,7 +86,7 @@ def import_data_excel(fileName):
     pass
 class Salary(models.Model):
     """
-    薪资调整数据
+    员工薪资调整的详细数据
     """
     #员工
     person = models.ForeignKey(Person,on_delete=models.CASCADE , verbose_name="员工")
