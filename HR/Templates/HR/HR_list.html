@@ -4,13 +4,17 @@
 {% endblock title %} 
 {#父模板中body区块定义覆盖#} 
 {% block body %}
+{% comment  %}
 <!-- <table>
   <th>工号</th>
   <th>姓名</th>  <th>年龄</th>  <tr>    <td>B-1000</td>    <td>张三</td>    <td>25</td>  </tr>  <tr>    <td>B-1001</td>    
     <td>李四</td>    <td>24</td>  </tr>  <tr>    <td>B-1002</td>    <td>王五</td>    <td>23</td>  </tr>  <tr>    <td>B-1003</td>    <td>赵六</td>    <td>26</td>  </tr>  <tr>    <td>B-1004</td>
     <td>钱七</td>    <td>26</td>  </tr>
 </table> -->
-<table border="1" cellspacing="0" class="table-responsive-md table-bordered table-hover" >
+{% endcomment %}
+
+<div class="container-fluid">
+  <table border="1" cellspacing="0" class="table-responsive table-bordered table-hover" >
     <caption>人员信息列表</caption>
     <thead class="thead-dark">
       <tr>
@@ -68,25 +72,28 @@
       </tr>
     {% endfor %}    
 </table>
+</div>
+
+
 
 {% comment %}
   通用列表视图自带的分页功能对象，不需要自己在额外申明 
   https://blog.csdn.net/l475378094/article/details/76850725
 {% endcomment %}
 <div class="pagination">
-<span class="step-links">
-  {% if page_obj.has_previous %}
-    <a href="?page={{page_obj.previous_page_mumber}}"><<</a>
-  {% endif %}
-</span>
-<span class="current">
-   {{page_obj.number}}/{{paginator.num_pages}}
-</span>
-<span class="step-links">
-{% if page_obj.has_next %}
-  <a href="?page={{page_obj.next_page_number}}">>></a>
-{% endif %}  
-</span>
+  <span class="step-links">
+    {% if page_obj.has_previous %}
+      <a href="?page={{page_obj.previous_page_mumber}}"><<</a>
+    {% endif %}
+  </span>
+  <span class="current">
+    {{page_obj.number}}/{{paginator.num_pages}}
+  </span>
+  <span class="step-links">
+  {% if page_obj.has_next %}
+    <a href="?page={{page_obj.next_page_number}}">>></a>
+  {% endif %}  
+  </span>
 
 </div>
 {{Author}}

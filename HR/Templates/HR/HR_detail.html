@@ -5,31 +5,39 @@
 {#父模板中body区块定义覆盖#} 
 {% block body %}
 {% comment %}
-  使用div进行排版，每两个字段排列成一行的样式
+  使用div进行排版，每3个字段排列成一行的样式
+    {% if  forloop.counter0|divisibleby:"2" and not forloop.first %}
+    {% if not forloop.counter0|divisibleby:"2" %} 
+    {% if forloop.counter0 == 2 or forloop.counter0 == 5 or forloop.counter0 == 8 or forloop.counter0 == 11 or forloop.counter0 == 14 or forloop.counter0 == 17 or forloop.last %} 
 {% endcomment %}
-<div class="container">
+<div class="container-fluid">
 <form method="post" role="form" class="form-horizontal">
     {% csrf_token %} 
-    {% for field in form %}
-        {% if forloop.counter0|divisibleby:"2" %}
-            <div class="row">
-        {% endif %}      
+    {% for field in form %} 
+        {% cycle "<div class='form-group row'>"  "" "" %}
 
-        <div class="col-2">
+        <div class="col">
             {{ field.errors }} {{ field.label_tag }} 
         </div>
-
-        <div class="col-2">
+        <div class="col">
             {{ field }} 
             {% if field.help_text %}
             <p class="help">{{ field.help_text|safe }}</p>
             {% endif %}
         </div>        
         
-        {% if not forloop.counter0|divisibleby:"2" %}
-            </div>
-        {% endif %}
-    {% endfor %} 
+        {% cycle "" "" "</div>" %}     
+     
+    {% endfor %}
+
+    <div class="row"> 
+        <div class="col">
+                <input type="submit" value="保存" class="btn btn-primary"/>
+        </div>  
+    </div>  
+   
+
+    
 </form>
 </div>
 {% endblock body %}
